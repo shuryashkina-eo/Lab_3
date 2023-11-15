@@ -39,5 +39,36 @@ main_str = """
 Под ним сидел, и кот учёный
 Свои мне сказки говорил.
 """
+def count_letters(string):
+    string = string.lower()
+    symbols = list (string)
+    letters = []
+    for symbol in symbols:
+        if symbol.isalpha() == True:
+            letters.append(symbol)
+    dict = {}
+    for letter in letters:
+        if letter in dict:
+            dict[letter] += 1
+        else:
+            dict[letter] = 1
+    return dict
 
-# TODO Распечатайте в столбик букву и её частоту в тексте
+def calculate_frequency(dict):
+    dictionary = {}
+    letter_ammount = 0
+    for a in dict:
+        c = dict.get(a)
+        letter_ammount += c
+    for position in dict:
+        frequency = dict[position]/letter_ammount
+        frequency = round(frequency, 2)
+        if position in dictionary:
+         dictionary[position] += frequency
+        else:
+            dictionary[position] = frequency
+    return dictionary
+main_dict = count_letters(main_str)
+main_dictionary = calculate_frequency(main_dict)
+for i, j in main_dictionary.items():
+    print(i, ': ', j)
